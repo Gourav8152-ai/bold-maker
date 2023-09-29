@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Converter</title>
+    <style>
+        textarea {
+            width: 100%;
+            height: 150px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Bold Maker Converter</h1>
+    <p>Enter your text with questions and answers separated by line breaks</p>
+    <textarea id="textArea" placeholder="Enter your text here..."></textarea>
+    <br>
+    <button id="convertButton">Convert</button>
+    <br>
+    <div id="result"></div>
+
+    <script>
+        document.getElementById("convertButton").addEventListener("click", function () {
+            const textArea = document.getElementById("textArea");
+            const resultDiv = document.getElementById("result");
+            const inputText = textArea.value;
+            
+            // Split the input text into lines
+            const lines = inputText.split('\n');
+            
+            // Initialize variables to store formatted text
+            let formattedText = '';
+            
+            // Process each line
+            lines.forEach((line) => {
+                if (line.trim() !== '') {
+                    // If the line ends with a question mark, format it as a question (bold)
+                    if (line.trim().endsWith('?')) {
+                        formattedText += `<b>${line}</b><br>`;
+                    } else {
+                        formattedText += line + '<br>';
+                    }
+                }
+            });
+            
+            // Display the formatted text in the result div
+            resultDiv.innerHTML = formattedText;
+        });
+    </script>
+</body>
+</html>
